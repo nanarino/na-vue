@@ -22,9 +22,7 @@ export interface Options<T extends Exclude<string, "class">> {
     axisProps: (col: Column<T>) => { class: string } & Record<string, any>
     scaleProps: (scale: number) => { class: string } & Record<string, any>
     shapeProps: (col: Data<T>) => { class: string } & Record<string, any>
-    captionProps: (
-        col: Column<T>
-    ) => { class: string } & Record<string, any>
+    captionProps: (col: Column<T>) => { class: string } & Record<string, any>
 }
 
 export interface ExtendedOptions<T extends Exclude<string, "class">>
