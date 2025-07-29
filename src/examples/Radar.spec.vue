@@ -1,10 +1,7 @@
 <script setup lang="ts">
+import { ref } from "vue"
 import { Radar, type Points } from "@/components/Radar"
 import { line, curveCardinalClosed } from "d3-shape"
-
-const smoothing = (points: Points) => {
-    return line().curve(curveCardinalClosed.tension(0.3))(points) as string
-}
 
 const columnsData = {
     price: "Price",
@@ -40,16 +37,26 @@ const data = [
         camera: 0.6,
     },
 ]
+
+const axes = ref(true)
+const tension = ref(0.3)
+const smoothing = (points: Points) => {
+    return line().curve(curveCardinalClosed.tension(tension.value ?? 0))(
+        points
+    ) as string
+}
+const scales = ref(5)
 </script>
 <template>
-    <view style="display: contents">
+    <main style="display: contents">
         <Radar
             class="my-phone"
             :columns-data
             :data
             :options="{
-                scales: 5,
+                scales,
                 smoothing,
+                axes,
                 shapeProps(data) {
                     return {
                         title: data.class,
@@ -58,7 +65,56 @@ const data = [
                 },
             }"
         />
-    </view>
+        <form onsubmit="return false">
+            <div class="na-form-item">
+                <span>axes</span>
+                <div class="na-input-wrapper">
+                    <span class="na-switch sm">
+                        <input
+                            type="checkbox"
+                            class="na-input"
+                            v-model="axes"
+                            id="axes"
+                            name="axes"
+                        />
+                        <i class="na-switch-mover"></i>
+                        <label class="na-switch-slot" for="axes"></label>
+                    </span>
+                </div>
+            </div>
+            <div class="na-form-item">
+                <label for="tension">count</label>
+                <div class="na-input-wrapper" data-validate>
+                    <input
+                        type="number"
+                        class="na-input"
+                        v-model="tension"
+                        id="tension"
+                        name="tension"
+                        :max="1"
+                        :min="0"
+                        :step="0.1"
+                        required
+                    />
+                </div>
+            </div>
+            <div class="na-form-item">
+                <label for="scales">scales</label>
+                <div class="na-input-wrapper" data-validate>
+                    <input
+                        type="number"
+                        class="na-input"
+                        v-model="scales"
+                        id="scales"
+                        name="scales"
+                        :max="15"
+                        :min="0"
+                        required
+                    />
+                </div>
+            </div>
+        </form>
+    </main>
 </template>
 <style scoped>
 :deep(.my-phone) {

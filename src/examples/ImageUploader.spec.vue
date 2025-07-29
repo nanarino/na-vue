@@ -22,13 +22,13 @@ void (async function init() {
     imgs.value = [Kirby]
 })()
 
-const v_if = ref(true)
+// 測試 `v-if`
+const hidden = ref(false)
 </script>
 <template>
-    <view style="display: contents">
-        <button class="na-button" @click="v_if = !v_if">測試v-if</button>
+    <main style="display: contents">
         <ImageUploader
-            v-if="v_if"
+            v-if="!hidden"
             v-model="imgs"
             :limit="9"
             :accept="[`image/gif`, `image/jpeg`, `image/png`]"
@@ -41,7 +41,25 @@ const v_if = ref(true)
         <p class="na-font-mono">
             {{ imgs.map((x: Image) => x.name) }}
         </p>
-    </view>
+        <form onsubmit="return false">
+            <div class="na-form-item">
+                <span>hidden</span>
+                <div class="na-input-wrapper">
+                    <span class="na-switch sm">
+                        <input
+                            type="checkbox"
+                            class="na-input"
+                            v-model="hidden"
+                            id="hidden"
+                            name="hidden"
+                        />
+                        <i class="na-switch-mover"></i>
+                        <label class="na-switch-slot" for="hidden"></label>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </main>
 </template>
 <style scoped>
 button {
