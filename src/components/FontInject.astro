@@ -1,0 +1,24 @@
+---
+import LXGWXiHeiMN from "@/assets/fonts/LXGWXiHeiMN.css?url"
+import jetbrainsMono from "@fontsource/jetbrains-mono/400.css?url"
+---
+
+<link
+    rel="stylesheet"
+    href={LXGWXiHeiMN}
+    data-nanarino-lit-provide
+    onload="document.documentElement.style.setProperty('--font-family-base', 'LXGWXiHeiMN')"
+/>
+<link
+    rel="stylesheet"
+    href={jetbrainsMono}
+    data-nanarino-lit-provide
+    onload="document.documentElement.style.setProperty('--font-family-mono', 'JetBrains Mono')"
+/>
+<script>
+    document.addEventListener("astro:after-swap", () => {
+        const root = document.documentElement
+        root.style.setProperty("--font-family-base", "LXGWXiHeiMN")
+        root.style.setProperty("--font-family-mono", "JetBrains Mono")
+    })
+</script>
