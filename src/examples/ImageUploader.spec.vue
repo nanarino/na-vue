@@ -42,10 +42,10 @@ const hidden = ref(false)
             {{ imgs.map((x: Image) => x.name) }}
         </p>
         <form onsubmit="return false">
-            <div class="na-form-item">
+            <label class="na-form-item">
                 <span>hidden</span>
                 <div class="na-input-wrapper">
-                    <span class="na-switch sm">
+                    <span class="na-switch">
                         <input
                             type="checkbox"
                             class="na-input"
@@ -54,10 +54,10 @@ const hidden = ref(false)
                             name="hidden"
                         />
                         <i class="na-switch-mover"></i>
-                        <label class="na-switch-slot" for="hidden"></label>
+                        <span class="na-switch-slot"></span>
                     </span>
                 </div>
-            </div>
+            </label>
         </form>
     </main>
 </template>

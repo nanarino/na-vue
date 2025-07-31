@@ -66,30 +66,28 @@ const scales = ref(5)
             }"
         />
         <form onsubmit="return false">
-            <div class="na-form-item">
+            <label class="na-form-item">
                 <span>axes</span>
                 <div class="na-input-wrapper">
-                    <span class="na-switch sm">
+                    <span class="na-switch">
                         <input
                             type="checkbox"
                             class="na-input"
                             v-model="axes"
-                            id="axes"
                             name="axes"
                         />
                         <i class="na-switch-mover"></i>
-                        <label class="na-switch-slot" for="axes"></label>
+                        <span class="na-switch-slot"></span>
                     </span>
                 </div>
-            </div>
-            <div class="na-form-item">
-                <label for="tension">count</label>
+            </label>
+            <label class="na-form-item">
+                <span>count</span>
                 <div class="na-input-wrapper" data-validate>
                     <input
                         type="number"
                         class="na-input"
                         v-model="tension"
-                        id="tension"
                         name="tension"
                         :max="1"
                         :min="0"
@@ -97,22 +95,21 @@ const scales = ref(5)
                         required
                     />
                 </div>
-            </div>
-            <div class="na-form-item">
-                <label for="scales">scales</label>
+            </label>
+            <label class="na-form-item">
+                <span>scales</span>
                 <div class="na-input-wrapper" data-validate>
                     <input
                         type="number"
                         class="na-input"
                         v-model="scales"
-                        id="scales"
                         name="scales"
                         :max="15"
                         :min="0"
                         required
                     />
                 </div>
-            </div>
+            </label>
         </form>
     </main>
 </template>

@@ -42,21 +42,20 @@ function handleItemClick(item: Item) {
             <Citrus :items :stroke-width="18" @item-click="handleItemClick" />
         </section>
         <form onsubmit="return false">
-            <div class="na-form-item">
-                <label for="count">count</label>
+            <label class="na-form-item">
+                <span>count</span>
                 <div class="na-input-wrapper" data-validate>
                     <input
                         type="number"
                         class="na-input"
                         v-model="count"
-                        id="count"
                         name="count"
                         :max="11"
                         :min="0"
                         required
                     />
                 </div>
-            </div>
+            </label>
         </form>
     </main>
 </template>

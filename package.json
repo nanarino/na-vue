@@ -9,7 +9,7 @@
         "preview": "astro preview"
     },
     "peerDependencies": {
-        "nanarinostyl": "^0.10.2"
+        "nanarinostyl": "^0.11.0"
     },
     "dependencies": {
         "@holy-two/data-theme": "^0.0.6",
