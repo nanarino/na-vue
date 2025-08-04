@@ -38,7 +38,7 @@ const hidden = ref(false)
                 message({ content: `超出数量限制`, primary: `danger` })
             "
         />
-        <p class="na-font-mono">
+        <p class="na-paragraph na-font-mono" data-has-indent>
             {{ imgs.map((x: Image) => x.name) }}
         </p>
         <form onsubmit="return false">
@@ -62,7 +62,8 @@ const hidden = ref(false)
     </main>
 </template>
 <style scoped>
-button {
-    margin-bottom: 16px;
+form {
+    margin: 2em;
 }
 </style>
+

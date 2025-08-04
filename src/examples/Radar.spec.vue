@@ -149,4 +149,8 @@ const scales = ref(5)
         stroke: rgb(var(--pinkpurple-6));
     }
 }
+
+form {
+    margin: 2em;
+}
 </style>

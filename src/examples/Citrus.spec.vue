@@ -4,10 +4,11 @@ import { Citrus, type Item } from "@/components/Citrus"
 import { message } from "@/scripts/client/message"
 
 const count = ref(0)
+const strokeWidth = ref(18)
 const items = computed(() =>
     [
         { color: "rgb(var(--red-4)", key: "red" },
-        { color: "rgb(var(--orange-4)", key: "orange" },
+        { color: "rgb(var(--orange-4)", key: "orange", title: "orange" },
         { color: "rgb(var(--gold-4)", key: "gold" },
         { color: "rgb(var(--yellow-4)", key: "yellow" },
         { color: "rgb(var(--lime-4)", key: "lime" },
@@ -35,11 +36,8 @@ function handleItemClick(item: Item) {
 </script>
 <template>
     <main style="display: contents">
-        <section>
-            <Citrus :items />
-        </section>
-        <section>
-            <Citrus :items :stroke-width="18" @item-click="handleItemClick" />
+        <section style="width: 200px">
+            <Citrus :items :stroke-width @item-click="handleItemClick" />
         </section>
         <form onsubmit="return false">
             <label class="na-form-item">
@@ -56,14 +54,25 @@ function handleItemClick(item: Item) {
                     />
                 </div>
             </label>
+            <label class="na-form-item">
+                <span>stroke-width</span>
+                <div class="na-input-wrapper" data-validate>
+                    <input
+                        type="number"
+                        class="na-input"
+                        v-model="strokeWidth"
+                        name="stroke-width"
+                        :max="27"
+                        :min="0"
+                        required
+                    />
+                </div>
+            </label>
         </form>
     </main>
 </template>
 <style scoped>
-button {
-    margin-bottom: 16px;
-}
-section {
-    width: 120px;
+form {
+    margin: 2em;
 }
 </style>

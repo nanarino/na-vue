@@ -6,7 +6,7 @@ import {
     REVOKED,
     type Image,
     type LocalInputFileImage,
-} from "./types"
+} from "."
 
 const images = defineModel<(Image | LocalInputFileImage)[]>("modelValue", {
     default: () => [],
