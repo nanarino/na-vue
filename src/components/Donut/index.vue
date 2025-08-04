@@ -64,6 +64,7 @@ const P = (n: number) => [X(n), Y(n)]
         >
             <path
                 v-if="stop - start < 100"
+                v-show="stop - start > 0"
                 :d="`
                     M ${P(start + offset)} 
                     A 100 100 
