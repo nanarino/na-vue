@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import { Donut, type Item } from "@/components/Donut"
+import { Donut, type Item } from "@/lib/Donut"
 import { message } from "@/scripts/client/message"
 
 const strokeWidth = ref(60)

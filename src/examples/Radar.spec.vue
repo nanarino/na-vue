@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import { Radar, type Points } from "@/components/Radar"
+import { Radar, type Points } from "@/lib/Radar"
 import { line, curveCardinalClosed } from "d3-shape"
 
 const columnsData = {

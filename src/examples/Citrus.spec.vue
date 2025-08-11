@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue"
-import { Citrus, type Item } from "@/components/Citrus"
+import { Citrus, type Item } from "@/lib/Citrus"
 import { message } from "@/scripts/client/message"
 
 const count = ref(0)
