@@ -35,7 +35,7 @@
         "@astrojs/vue": "^5.1.0",
         "@fontsource/jetbrains-mono": "^5.2.6",
         "@types/d3-shape": "^3.1.7",
-        "astro": "^5.12.4",
+        "astro": "^5.13.2",
         "dedent": "^1.6.0",
         "style-to-object": "^1.0.9",
         "vite": "^6.3.5"
