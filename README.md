@@ -12,9 +12,29 @@ pnpm i
 pnpm dev
 ```
 
+### 约束
+
+爲了可以源碼引入，不要使用路徑別名如 `@`
+
+爲了可以離線訪問，不要用網路元件如 `<iconify-icon />`
+
 ## 利用
 
-元件暫時未計劃發佈到 [npm](https://www.npmjs.com/)，可以將需要的源程式碼拷貝到自己的專案。
+元件暫時未計劃發佈到 [npm](https://www.npmjs.com/), 可以按以下方式安裝, 或者直接拷貝到自己的專案
+
+```diff
+// package.json
+{
+  "dependencies": {
++    "@nanarinostyl/vue": "github:nanarino/na-vue",
+  }
+}
+```
+
+```shell
+pnpm i nanarinostyl
+pnpm update @nanarinostyl/vue
+```
 
 樣式套件引入：
 

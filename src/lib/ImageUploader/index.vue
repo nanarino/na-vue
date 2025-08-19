@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount } from "vue"
+import { h, type VNode, computed, nextTick, onBeforeUnmount } from "vue"
 import {
     defaultCreateUrl,
     defaultRevokeUrl,
@@ -7,6 +7,8 @@ import {
     type Image,
     type LocalInputFileImage,
 } from "."
+import close from "../../assets/close.svg?raw"
+import plus from "../../assets/plus.svg?raw"
 
 const images = defineModel<(Image | LocalInputFileImage)[]>("modelValue", {
     default: () => [],
@@ -25,12 +27,18 @@ const props = withDefaults(
         customRevokeUrl?: (
             img: Image | LocalInputFileImage
         ) => Promise<void> | void
+        renderAppendIcon?: () => VNode
+        renderRemoveIcon?: () => VNode
     }>(),
     {
         accept: () => ["image/*"],
         limit: Infinity,
         customCreateUrl: defaultCreateUrl,
         customRevokeUrl: defaultRevokeUrl,
+        renderAppendIcon: () =>
+            h("i", { innerHTML: plus, style: "display: inline-flex" }),
+        renderRemoveIcon: () =>
+            h("i", { innerHTML: close, style: "display: inline-flex" }),
     }
 )
 
@@ -150,12 +158,13 @@ onBeforeUnmount(async () => {
                     </div>
                 </div>
                 <div class="na-image-footer-action">
-                    <iconify-icon
-                        icon="line-md:remove"
-                        name="delete"
-                        class="na-link"
+                    <span
+                        class="icon na-link"
                         @click="remove(index)"
-                    />
+                        style="font-size: 22px"
+                    >
+                        <component :is="renderRemoveIcon" />
+                    </span>
                 </div>
             </div>
         </div>
@@ -178,10 +187,9 @@ onBeforeUnmount(async () => {
                 @change="handleInput"
                 multiple
             />
-            <iconify-icon
-                icon="line-md:plus"
-                style="font-size: 48px; pointer-events: none"
-            />
+            <span class="icon" style="font-size: 48px; pointer-events: none">
+                <component :is="renderAppendIcon" />
+            </span>
             <span> 點擊添加或拖拽相片 </span>
         </div>
     </div>
@@ -230,10 +238,11 @@ onBeforeUnmount(async () => {
     .na-image {
         aspect-ratio: 1 / 1;
         border-radius: var(--border-radius-md);
-
-        .na-link {
-            font-size: 22px;
-        }
     }
+}
+
+.icon :deep(svg) {
+    width: 1em;
+    height: 1em;
 }
 </style>

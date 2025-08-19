@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { shallowRef, useTemplateRef, ref } from "vue"
+import { shallowRef, useTemplateRef, ref, h } from "vue"
 import { ImageUploader, type Image } from "@/lib/ImageUploader"
 import { message } from "@/scripts/client/message"
 
 const imgs = shallowRef<Image[]>([])
 const ImageUploaderRef = useTemplateRef("ImageUploaderRef")
+
+// 自訂圖示
+const renderAppendIcon = () => h("iconify-icon", { icon: "line-md:plus" })
+const renderRemoveIcon = () => h("iconify-icon", { icon: "line-md:remove" })
 
 const change = async (item: {
     images: Image[]
@@ -14,6 +18,7 @@ const change = async (item: {
     console.log(ImageUploaderRef.value?.size)
 }
 
+// 初始相片
 void (async function init() {
     const res = await fetch(`${import.meta.env.BASE_URL}data/Kirby.json`)
     const Kirby = (await res.json()) as Image
@@ -34,9 +39,9 @@ const hidden = ref(false)
             :accept="[`image/gif`, `image/jpeg`, `image/png`]"
             ref="ImageUploaderRef"
             @change="change"
-            @over-limit="
-                message({ content: `超出数量限制`, primary: `danger` })
-            "
+            :render-append-icon
+            :render-remove-icon
+            @over-limit="message({ content: `最多9張`, primary: `danger` })"
         />
         <p class="na-paragraph na-font-mono" data-has-indent>
             {{ imgs.map((x: Image) => x.name) }}
@@ -66,4 +71,3 @@ form {
     margin: 2em;
 }
 </style>
-
